@@ -1,0 +1,25 @@
+
+.sidebarContainer {
+    float: left;
+    height: 90vh;
+    width: 15%;
+    margin:0vh 1vh;
+    display: flex;
+    background-color: rgb(197, 224, 248);
+    flex-direction: column;
+    align-items: center;
+    padding: 3vh;
+    border-radius:10vh;
+  }
+  
+  .sidebarContainer > * {
+    margin: 1vh 2vh;
+    padding: 1vh;
+  }
+
+
+  #logo {
+    padding: 1vh;
+    width: 80%;
+    max-width: 100%;
+  }

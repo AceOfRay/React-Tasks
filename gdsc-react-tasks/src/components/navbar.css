@@ -1,0 +1,9 @@
+#nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(197, 224, 248);
+    height: 10vh;
+    border-radius:10vh;
+    margin-top:1vh;
+  }
