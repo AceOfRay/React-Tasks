@@ -1,14 +1,13 @@
+import Navbar from "../components/navbar";
+import HomeSidebar from "../components/homeSidebar";
+import TaskContainer from "../components/taskContainer";
 
-import Navbar from "../components/navbar"
-import HomeSidebar from "../components/homeSidebar"
-
-
-export default function TasksHome() {
-
-    return (
-        <div>
-            <HomeSidebar></HomeSidebar>
-            <Navbar></Navbar>
-        </div>
-    )
+export default function TasksHome({ user }) {
+  return (
+    <div>
+      <HomeSidebar email={user.email}></HomeSidebar>
+      <Navbar></Navbar>
+      <TaskContainer user={user}></TaskContainer>
+    </div>
+  );
 }

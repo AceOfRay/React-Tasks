@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import "./App.css";
 import TasksHome from "./pages/home";
 import LoginPage from "./pages/loginForm";
@@ -7,25 +7,21 @@ import { onAuthStateChanged } from "firebase/auth";
 
 export default function App() {
 
-  // set up login state
+  // set up login state logic
   const [user, setUser] = useState(false);
   onAuthStateChanged(auth, (user) => {
     setUser(user);
+    console.log('User Successfully Logged In')
   });
 
-  const loginNormal = () => {
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('');
-    
-  }
 
   
 
-
   return <main>
-    {user ? <TasksHome></TasksHome> : <LoginPage></LoginPage>}
+    {user ? <TasksHome user={user}></TasksHome> : <LoginPage setUser={setUser}></LoginPage>}
   </main>;
 }
+
 /*
   const count = 1;
   if (count % 2 > 0) {
