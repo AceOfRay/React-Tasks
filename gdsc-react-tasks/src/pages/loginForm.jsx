@@ -11,6 +11,7 @@ export default function LoginPage({ setUser }) {
     try {
       await signInWithEmailAndPassword(auth, email, pswd);
       setUser(auth.currentUser);
+      console.log('User Signed In Successfully')
     } catch (error) {
       console.log("Error Signing In:", error.message)
     }

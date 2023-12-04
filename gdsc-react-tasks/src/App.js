@@ -3,22 +3,15 @@ import "./App.css";
 import TasksHome from "./pages/home";
 import LoginPage from "./pages/loginForm";
 import { auth } from "./firebaseappInit";
-import { onAuthStateChanged } from "firebase/auth";
+import { signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
 
 export default function App() {
 
   // set up login state logic
-  const [user, setUser] = useState(false);
-  onAuthStateChanged(auth, (user) => {
-    setUser(user);
-    console.log('User Successfully Logged In')
-  });
-
-
-  
+  const [user, setUser] = useState(false);  
 
   return <main>
-    {user ? <TasksHome user={user}></TasksHome> : <LoginPage setUser={setUser}></LoginPage>}
+    {user ? <TasksHome setUser={setUser} user={user}></TasksHome> : <LoginPage setUser={setUser}></LoginPage>}
   </main>;
 }
 
