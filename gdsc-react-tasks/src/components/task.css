@@ -8,13 +8,10 @@
   background-color: rgb(197, 224, 248);
   justify-content: center;
   display: flex;
-  align-items: center;
 }
 
 .name,
 .description {
-  display: flex;
-  align-items: center;
   padding: 1vh;
   margin: 1vh;
   font-size: 2vh;
@@ -31,11 +28,9 @@
 }
 
 .completion {
-  padding: 1vh 4vh;
+  padding: 1vh 1.2vh;
   border-radius: 2vh;
   background-color: rgb(197, 224, 248);
-  width: 3vh;
-  height: 2vh;
   cursor: pointer;
 }
 

@@ -1,6 +1,6 @@
-import "./taskContainer.css";
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import TaskComponent from "./task";
+import "./taskContainer.css"
 import { db } from "../firebaseappInit";
 import { collection, query, onSnapshot } from "firebase/firestore";
 
@@ -15,41 +15,50 @@ class Task {
 }
 
 export default function TaskContainer({ user }) {
-  const [taskComponentArray, setTaskComponentArray] = useState([]);
+  const [tasks, setTasks] = useState([]);
 
-  const collectionRef = collection(db, "Users", user.uid, "Tasks");
-  const q = query(collectionRef);
+  useEffect(() => {
+    const collectionRef = collection(db, "Users", user.uid, "Tasks");
+    const q = query(collectionRef);
 
-  onSnapshot(q, (qSnap) => {
-    try {
-      const taskList = [];
-      qSnap.forEach((doc) => {
-        const data = doc.data();
-        taskList.push(
-          new Task(
-            doc.id,
-            data.taskName,
-            data.taskDate,
-            data.taskDescription,
-            data.taskStatus
-          )
-        );
-      });
-      console.log(taskList);
-  
-      let taskArray = [];
-      taskList.forEach((task) => {
-        taskArray.push(
-          <TaskComponent taskObject={task}></TaskComponent>
-        );
-      });
-  
-      setTaskComponentArray(taskArray);
-    } catch (error) {
-      console.error('Error processing snapshot:', error);
-    }
-  });
-  
+    // Debounce the state update
+    let debounceUpdate;
+    const debouncedSetTasks = (taskList) => {
+      clearTimeout(debounceUpdate);
+      debounceUpdate = setTimeout(() => {
+        setTasks(taskList);
+      }, 300); // Adjust the debounce timeout as needed
+    };
+
+    const unsubscribe = onSnapshot(q, (qSnap) => {
+      try {
+        const taskList = [];
+        qSnap.forEach((doc) => {
+          const data = doc.data();
+          taskList.push(
+            new Task(
+              doc.id,
+              data.taskName,
+              data.taskDate,
+              data.taskDescription,
+              data.taskStatus
+            )
+          );
+        });
+        console.log(taskList);
+
+        // Update the state with debouncing
+        debouncedSetTasks(taskList);
+      } catch (error) {
+        console.error('Error processing snapshot:', error);
+      }
+    });
+
+    return () => {
+      clearTimeout(debounceUpdate);
+      unsubscribe();
+    };
+  }, [user.uid]);
 
   return (
     <div id="mainBodyContainer">
@@ -60,7 +69,11 @@ export default function TaskContainer({ user }) {
         <p id="description">Description</p>
         <div id="options">Delete</div>
       </div>
-      <div id="taskContainer">{taskComponentArray}</div>
+      <div id="taskContainer">
+        {tasks.map((task) => (
+          <TaskComponent key={task.key} taskObject={task} />
+        ))}
+      </div>
     </div>
   );
 }

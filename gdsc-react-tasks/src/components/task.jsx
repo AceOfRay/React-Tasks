@@ -1,4 +1,5 @@
 import "./task.css";
+import { useState } from "react";
 
 export default function TaskComponent({ taskObject }) {
   const taskDate = taskObject.taskDate.toDate();
@@ -8,13 +9,11 @@ export default function TaskComponent({ taskObject }) {
     .getDate()
     .toString()
     .padStart(2, "0")}/${taskDate.getFullYear()}`;
+
   return (
     <div key={taskObject.key} className="Task">
       <div className="completion">
-        <input
-          type="checkbox"
-          checked={taskObject.status}
-        ></input>
+        <input type="checkbox" checked={taskObject.status}></input>
       </div>
 
       <p className="name">{taskObject.taskName}</p>
