@@ -14,6 +14,6 @@ body {
   padding: 0;
   font-size: 3vh;
   color: rgb(21, 101, 206);
-  font-weight: 200;
-  font-family: "Times New Roman", Times, serif;
+  font-weight: 400;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }

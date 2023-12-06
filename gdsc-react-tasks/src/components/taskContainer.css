@@ -33,6 +33,7 @@
   overflow-y: auto;
   height: auto;
   max-height: 80vh;
+  margin:1vh;
 }
 
 #taskContainer::-webkit-scrollbar {

@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import TaskComponent from "./task";
-import "./taskContainer.css"
+import "./taskContainer.css";
 import { db } from "../firebaseappInit";
 import { collection, query, onSnapshot } from "firebase/firestore";
 
 class Task {
-  constructor(key, taskName, taskDate, taskDescription, status) {
+  constructor(uid, key, taskName, taskDate, taskDescription, status) {
+    this.uid = uid
     this.key = key;
     this.taskName = taskName;
     this.taskDate = taskDate;
@@ -21,43 +22,27 @@ export default function TaskContainer({ user }) {
     const collectionRef = collection(db, "Users", user.uid, "Tasks");
     const q = query(collectionRef);
 
-    // Debounce the state update
-    let debounceUpdate;
-    const debouncedSetTasks = (taskList) => {
-      clearTimeout(debounceUpdate);
-      debounceUpdate = setTimeout(() => {
-        setTasks(taskList);
-      }, 300); // Adjust the debounce timeout as needed
-    };
-
     const unsubscribe = onSnapshot(q, (qSnap) => {
       try {
-        const taskList = [];
-        qSnap.forEach((doc) => {
+        const taskList = qSnap.docs.map((doc) => {
           const data = doc.data();
-          taskList.push(
-            new Task(
-              doc.id,
-              data.taskName,
-              data.taskDate,
-              data.taskDescription,
-              data.taskStatus
-            )
+          return new Task(
+            user.uid,
+            doc.id,
+            data.taskName,
+            data.taskDate,
+            data.taskDescription,
+            data.taskStatus
           );
         });
-        console.log(taskList);
-
-        // Update the state with debouncing
-        debouncedSetTasks(taskList);
+        setTasks(taskList);
       } catch (error) {
-        console.error('Error processing snapshot:', error);
+        console.error("Error processing snapshot:", error);
       }
     });
 
-    return () => {
-      clearTimeout(debounceUpdate);
-      unsubscribe();
-    };
+    // Cleanup function
+    return () => unsubscribe();
   }, [user.uid]);
 
   return (

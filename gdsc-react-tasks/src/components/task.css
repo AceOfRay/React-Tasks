@@ -7,24 +7,29 @@
   border-radius: 2vh;
   background-color: rgb(197, 224, 248);
   justify-content: center;
+  height:2vh;
   display: flex;
 }
 
 .name,
 .description {
+  display:flexbox;
+  flex-wrap:nowrap;
   padding: 1vh;
   margin: 1vh;
   font-size: 2vh;
   width: 41vh;
+  height:2vh;
   border-radius: 2vh;
   background-color: rgb(197, 224, 248);
+  text-overflow: ellipsis;
 }
 
 .Task {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0vh 1vh;
+
 }
 
 .completion {
@@ -34,17 +39,9 @@
   cursor: pointer;
 }
 
-.optionsBtn {
-  padding: 1vh;
-  font-size: 2vh;
-  width: 13vh;
-  border-radius: 2vh;
-  border: none;
-  background-color: rgb(197, 224, 248);
-  justify-content: center;
-  display: flex;
-  cursor: pointer;
-}
+
 .trashIcon {
-  width: 3vh;
+  scale:1.3;
 }
+
+

@@ -23,3 +23,18 @@
     width: 80%;
     max-width: 100%;
   }
+
+  #aboutUser, #currentUserEmail {
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    font-size:1.5vw;
+  }
+
+  .sideButton {
+    padding: 1vh;
+    background-color: aliceblue;
+    border: 2px solid rgb(0, 140, 255);
+    border-radius: 1vh;
+    text-align: center;
+  }
