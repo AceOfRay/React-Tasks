@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import TaskComponent from "./task";
 import "./taskContainer.css";
 import { db } from "../firebaseappInit";
-import { collection, query, onSnapshot } from "firebase/firestore";
+import { collection, query, onSnapshot, orderBy } from "firebase/firestore";
 
 class Task {
   constructor(uid, key, taskName, taskDate, taskDescription, status) {
@@ -20,7 +20,7 @@ export default function TaskContainer({ user }) {
 
   useEffect(() => {
     const collectionRef = collection(db, "Users", user.uid, "Tasks");
-    const q = query(collectionRef);
+    const q = query(collectionRef, orderBy("taskDate"));
 
     const unsubscribe = onSnapshot(q, (qSnap) => {
       try {
