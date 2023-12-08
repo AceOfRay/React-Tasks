@@ -5,8 +5,10 @@ import { db } from "../firebaseappInit";
 
 export default function TaskComponent({ taskObject }) {
   // this just takes in a task object and creates a component for it
-  taskObject.taskDate.seconds += 20000
+  taskObject.taskDate.seconds += 86000
+  console.log(taskObject.taskDate.seconds)
   const taskDate = taskObject.taskDate.toDate();
+  console.log(taskDate)
   const stringDate = `${(taskDate.getMonth() + 1)
     .toString()
     .padStart(2, "0")}/${taskDate
