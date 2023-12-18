@@ -3,21 +3,17 @@ import "./homeSidebar.css";
 import NewTaskModal from "./newTaskModal";
 
 export default function HomeSidebar({ setUser, user }) {
-
   const logoutUser = () => {
     setUser(false);
-  }
+  };
 
-  const [modalDisplay, setModalDisplay] = useState(false)
+  const [modalDisplay, setModalDisplay] = useState(false);
 
-  const openModal = () => [
-    setModalDisplay(true)
-  ]
+  const openModal = () => [setModalDisplay(true)];
 
   const closeModal = () => {
-    setModalDisplay(false)
-  }
-
+    setModalDisplay(false);
+  };
 
   return (
     <aside>
@@ -27,14 +23,28 @@ export default function HomeSidebar({ setUser, user }) {
           Signed in with
           <p id="currentUserEmail">{user.email}</p>
         </div>
-        <button type="button" className="sideButton" id="newTask" onClick={openModal}>
+        <button
+          type="button"
+          className="sideButton"
+          id="newTask"
+          onClick={openModal}
+        >
           New Task
         </button>
-        <button type="button" className="sideButton" id="logout" onClick={logoutUser}>
+        <button
+          type="button"
+          className="sideButton"
+          id="logout"
+          onClick={logoutUser}
+        >
           Logout
         </button>
       </div>
-      <NewTaskModal modalState={modalDisplay} closeModal={closeModal} user={user}/>
+      <NewTaskModal
+        modalState={modalDisplay}
+        closeModal={closeModal}
+        user={user}
+      />
     </aside>
   );
 }

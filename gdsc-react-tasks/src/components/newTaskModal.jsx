@@ -4,38 +4,36 @@ import { db } from "../firebaseappInit";
 import { doc, setDoc, Timestamp } from "firebase/firestore";
 
 function generateRandomId() {
-    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    let randomId = '';
-  
-    for (let i = 0; i < 15; i++) {
-        const randomIndex = Math.floor(Math.random() * characters.length);
-        randomId += characters.charAt(randomIndex)
-    }
-    return randomId
-};
-  
+  const characters =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  let randomId = "";
 
+  for (let i = 0; i < 15; i++) {
+    const randomIndex = Math.floor(Math.random() * characters.length);
+    randomId += characters.charAt(randomIndex);
+  }
+  return randomId;
+}
 
 export default function NewTaskModal({ modalState, closeModal, user }) {
-
-    // making state for newTask Inputs
+  // making state for newTask Inputs
   const [taskName, setTaskName] = useState("");
 
   const [taskDate, setTaskDate] = useState("");
 
   const [taskDescription, setTaskDescription] = useState("");
 
-    const createNewTask = async () => {
-        const taskData = {
-            taskName: taskName,
-            taskDescription: taskDescription,
-            taskDate: Timestamp.fromDate(new Date(taskDate)),
-            taskStatus: false
-        }
-        const ID = generateRandomId()
-        await setDoc(doc(db, "Users", user.uid, "Tasks", ID), taskData);
-        console.log('New Task Successfully Created')
-        closeModal()
+  const createNewTask = async () => {
+    const taskData = {
+      taskName: taskName,
+      taskDescription: taskDescription,
+      taskDate: Timestamp.fromDate(new Date(taskDate)),
+      taskStatus: false,
+    };
+    const ID = generateRandomId();
+    await setDoc(doc(db, "Users", user.uid, "Tasks", ID), taskData);
+    console.log("New Task Successfully Created");
+    closeModal();
   };
 
   if (!modalState) {

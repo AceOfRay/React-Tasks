@@ -6,7 +6,7 @@ import { collection, query, onSnapshot, orderBy } from "firebase/firestore";
 
 class Task {
   constructor(uid, key, taskName, taskDate, taskDescription, status) {
-    this.uid = uid
+    this.uid = uid;
     this.key = key;
     this.taskName = taskName;
     this.taskDate = taskDate;

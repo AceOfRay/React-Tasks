@@ -1,40 +1,40 @@
-
 .sidebarContainer {
-    float: left;
-    height: 90vh;
-    width: 15%;
-    margin:0vh 1vh;
-    display: flex;
-    background-color: rgb(197, 224, 248);
-    flex-direction: column;
-    align-items: center;
-    padding: 3vh;
-    border-radius:10vh;
-  }
-  
-  .sidebarContainer > * {
-    margin: 1vh 2vh;
-    padding: 1vh;
-  }
+  float: left;
+  height: 90vh;
+  width: 15%;
+  margin: 0vh 1vh;
+  display: flex;
+  background-color: rgb(197, 224, 248);
+  flex-direction: column;
+  align-items: center;
+  padding: 3vh;
+  border-radius: 10vh;
+}
 
+.sidebarContainer > * {
+  margin: 1vh 2vh;
+  padding: 1vh;
+}
 
-  #logo {
-    padding: 1vh;
-    width: 80%;
-    max-width: 100%;
-  }
+#logo {
+  padding: 1vh;
+  width: 80%;
+  max-width: 100%;
+}
 
-  #aboutUser, #currentUserEmail {
-    display:flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    font-size:1.5vw;
-  }
+#aboutUser,
+#currentUserEmail {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  font-size: 1.5vw;
+}
 
-  .sideButton {
-    padding: 1vh;
-    background-color: aliceblue;
-    border: 2px solid rgb(0, 140, 255);
-    border-radius: 1vh;
-    text-align: center;
-  }
+.sideButton {
+  padding: 1vh;
+  background-color: aliceblue;
+  border: 2px solid rgb(0, 140, 255);
+  border-radius: 1vh;
+  text-align: center;
+  cursor: pointer;
+}

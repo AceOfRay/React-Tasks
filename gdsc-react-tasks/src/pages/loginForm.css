@@ -1,30 +1,26 @@
-
-
 #container {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-  }
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
 
-  
 #loginForm {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 6vw;
-    margin-bottom:1vw;
-    padding: 2vw;
-    background-color: rgb(197, 224, 248);
-    border: 2px solid rgb(0, 140, 255);
-    border-radius: 2vh;
-  }
-  
-  #loginForm > * {
-    margin: 1vh;
-  }
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 6vw;
+  margin-bottom: 1vw;
+  padding: 2vw;
+  background-color: rgb(197, 224, 248);
+  border: 2px solid rgb(0, 140, 255);
+  border-radius: 2vh;
+}
 
-  
+#loginForm > * {
+  margin: 1vh;
+}
+
 #loginButton,
 #signupButton,
 #emailInput,
@@ -38,44 +34,44 @@
   text-align: center;
 }
 
-#loginButton, #signupButton {
+#loginButton,
+#signupButton {
   cursor: pointer;
 }
 #googleLogin {
-  margin-bottom:7vw;
-  display:flex;
+  margin-bottom: 7vw;
+  display: flex;
   align-items: center;
   justify-content: space-between;
   cursor: pointer;
 }
 
 #googleLogo {
-  width:1.8vw;
-  height:auto;
-  margin:.5vw;
+  width: 1.8vw;
+  height: auto;
+  margin: 0.5vw;
 }
 
-
 .title {
-    display: flex;
-    justify-content: center;
-    font-size: 4vw;
-    font-weight:300;
-    margin:2vw;
+  display: flex;
+  justify-content: center;
+  font-size: 4vw;
+  font-weight: 300;
+  margin: 2vw;
 }
 
 .titleImage {
-  width:20vh;
+  width: 20vh;
 }
 
 .LoginNav {
-  display:flex;
+  display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .foot {
-  display:flex;
+  display: flex;
   justify-content: center;
-  cursor:pointer;
+  cursor: pointer;
 }

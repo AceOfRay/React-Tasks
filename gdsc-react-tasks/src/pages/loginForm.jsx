@@ -22,10 +22,8 @@ export default function LoginPage({ setUser }) {
       try {
         await signInWithEmailAndPassword(auth, email, pswd);
         setUser(auth.currentUser);
-        console.log("User Signed In Successfully");
       } catch (error) {
         alert("Could Not Log In: Invalid Login Credentials");
-        console.log("Could Not Log In: Invalid Login Credentials");
       }
     } else if (loginMethod === "google") {
       try {
@@ -33,11 +31,8 @@ export default function LoginPage({ setUser }) {
         signInWithPopup(auth, provider)
           .then((result) => {
             setUser(auth.currentUser);
-            console.log("User Signed In With Google Successfully", result);
           })
-          .catch((error) => {
-            console.log("Error Signing In With Google:", error.message, error);
-          });
+          .catch((error) => {});
       } catch (error) {
         console.log("Error");
       }
@@ -48,16 +43,22 @@ export default function LoginPage({ setUser }) {
 
   const handleNewUserSignIn = () => {
     try {
-      createUserWithEmailAndPassword(auth, email, pswd)
-        .then((credential) => {
-          updateProfile(auth.currentUser, {
-            displayName: name,
+      if (name && email && pswd) {
+        createUserWithEmailAndPassword(auth, email, pswd)
+          .then((credential) => {
+            updateProfile(auth.currentUser, {
+              displayName: name,
+            });
+            setUser(auth.currentUser);
+          })
+          .catch((error) => {
+            console.log("Error Setting Display Name:", error);
           });
-          setUser(auth.currentUser);
-        })
-        .catch((error) => {
-          console.log("Error Setting Display Name:", error);
-        });
+      } else {
+        const err = new Error("Ensure All Fields Are Filled Out");
+        alert(err);
+        throw err;
+      }
     } catch (error) {
       console.log(error);
     }

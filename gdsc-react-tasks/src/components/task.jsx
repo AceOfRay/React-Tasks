@@ -5,10 +5,8 @@ import { db } from "../firebaseappInit";
 
 export default function TaskComponent({ taskObject }) {
   // this just takes in a task object and creates a component for it
-  taskObject.taskDate.seconds += 86000
-  console.log(taskObject.taskDate.seconds)
+  taskObject.taskDate.seconds += 86000;
   const taskDate = taskObject.taskDate.toDate();
-  console.log(taskDate)
   const stringDate = `${(taskDate.getMonth() + 1)
     .toString()
     .padStart(2, "0")}/${taskDate
@@ -29,7 +27,6 @@ export default function TaskComponent({ taskObject }) {
     updateDoc(document, {
       taskStatus: status,
     });
-    console.log("Task:", taskObject.key, "Has Been Changed To:", status);
   }, [status]);
 
   //on the click of the delete button, delete the task
@@ -37,13 +34,17 @@ export default function TaskComponent({ taskObject }) {
   const deleteTask = () => {
     const document = doc(db, "Users", taskObject.uid, "Tasks", taskObject.key);
     deleteDoc(document);
-    console.log("Task Successfully Deleted");
   };
 
   return (
     <div key={taskObject.key} className="Task">
       <div className="completion">
-        <input type="checkbox" checked={status} onChange={handleClick}></input>
+        <input
+          type="checkbox"
+          checked={status}
+          onChange={handleClick}
+          className="checkbox"
+        ></input>
       </div>
 
       <p className="name">{taskObject.taskName}</p>
